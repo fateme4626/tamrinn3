@@ -69,6 +69,7 @@ public class HintMenu implements Screen {
             "+ Movement: W-A-S-D",
             "+ Shooting: Left mouse click",
             "+ Reload: R key",
+            "+ Pause: P key"
         };
 
         for (String hint : hints) {

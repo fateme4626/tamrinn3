@@ -3,12 +3,10 @@ package com.project1.Views;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 import com.project1.Controllers.GameControllers.GameController;
 import com.project1.Main;
 
@@ -31,7 +29,7 @@ public class GameView implements Screen, InputProcessor {
     public void render(float delta) {
         ScreenUtils.clear(0, 0, 0, 1);
         Main.getBatch().begin();
-        controller.updateGame();
+        controller.update();
         Main.getBatch().end();
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
@@ -79,7 +77,7 @@ public class GameView implements Screen, InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        controller.getWeaponController().handleWeaponShoot(screenX, screenY);
+        controller.getWeaponController().shoot(screenX, screenY);
         return false;
     }
 
@@ -100,7 +98,7 @@ public class GameView implements Screen, InputProcessor {
 
     @Override
     public boolean mouseMoved(int screenX, int screenY) {
-        controller.getWeaponController().handleWeaponRotation(screenX, screenY);
+        controller.getWeaponController().weaponRotation(screenX, screenY);
         return false;
     }
 

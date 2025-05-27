@@ -1,9 +1,12 @@
 package com.project1.Controllers.GameControllers;
 
 
+import com.project1.Models.App;
+import com.project1.Models.Enums.Weapon;
 import com.project1.Models.Player;
-import com.project1.Models.Weapon;
 import com.project1.Views.GameView;
+
+import java.util.Objects;
 
 public class GameController {
     private GameView view;
@@ -14,12 +17,12 @@ public class GameController {
 
     public void setView(GameView view) {
         this.view = view;
-        playerController = new PlayerController(new Player());
         worldController = new WorldController(playerController);
-        weaponController = new WeaponController(new Weapon());
+        weaponController = new WeaponController(App.getInstance().getPlayer().getWeapon());
+        playerController = new PlayerController();
     }
 
-    public void updateGame() {
+    public void update() {
         if (view != null) {
             worldController.update();
             playerController.update();

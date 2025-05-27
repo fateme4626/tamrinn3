@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.project1.Main;
+import com.project1.Models.App;
 import com.project1.Models.Bullet;
 import com.project1.Models.Weapon;
 
@@ -15,16 +16,16 @@ public class WeaponController {
     private Weapon weapon;
     private ArrayList<Bullet> bullets = new ArrayList<>();
 
-    public WeaponController(Weapon weapon){
+    public WeaponController(Weapon weapon) {
         this.weapon = weapon;
     }
 
-    public void update(){
+    public void update() {
         weapon.getSprite().draw(Main.getBatch());
         updateBullets();
     }
 
-    public void handleWeaponRotation(int x, int y) {
+    public void weaponRotation(int x, int y) {
         Sprite weaponSprite = weapon.getSprite();
 
         float weaponCenterX = (float) Gdx.graphics.getWidth() / 2;
@@ -35,22 +36,30 @@ public class WeaponController {
         weaponSprite.setRotation((float) (3.14 - angle * MathUtils.radiansToDegrees));
     }
 
-    public void handleWeaponShoot(int x, int y){
-        bullets.add(new Bullet(x, y));
-        weapon.setAmmo(weapon.getAmmo() - 1);
+    public void shoot(int x, int y) {
+        if (weapon.getAmmo() - 1 < 0) {
+            if(App.getInstance().getGameSetting().isAutoReload()) {
+                weapon.reload();
+                bullets.add(new Bullet(x, y));
+            } else {
+
+            }
+        } else {
+            weapon.changeAmmo(weapon.getAmmo() - 1);
+            bullets.add(new Bullet(x, y));
+        }
     }
 
     public void updateBullets() {
-        for(Bullet b : bullets) {
+        for (Bullet b : bullets) {
             b.getSprite().draw(Main.getBatch());
             Vector2 direction = new Vector2(
-                Gdx.graphics.getWidth()/2f - b.getX(),
-                Gdx.graphics.getHeight()/2f - b.getY()
+                Gdx.graphics.getWidth() / 2f - b.getX(),
+                Gdx.graphics.getHeight() / 2f - b.getY()
             ).nor();
 
             b.getSprite().setX(b.getSprite().getX() - direction.x * 5);
             b.getSprite().setY(b.getSprite().getY() + direction.y * 5);
         }
     }
-
 }

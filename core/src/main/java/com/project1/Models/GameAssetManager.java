@@ -309,7 +309,7 @@ public class GameAssetManager {
 
     public static void buildWeapons() {
         smgPath = "assets/Images/Sprite/SMGStill/SMGStill.png";
-        shotgunPath = "assets/Images/Sprite/SwordStill/SwordStill.png";
+        shotgunPath = "assets/shotgun.png";
         revolverPath = "assets/Images/Sprite/RevolverStill/RevolverStill.png";
         smgTxt = new Texture(smgPath);
         shotgunTxt = new Texture(shotgunPath);

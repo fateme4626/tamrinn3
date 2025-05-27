@@ -5,6 +5,7 @@ public class App {
     private GameSetting gameSetting;
     private PlayerProfile playerProfile;
     private boolean isGuest = false;
+    private Player player;
 
     App() {
         gameSetting = new GameSetting();
@@ -16,6 +17,14 @@ public class App {
             instance = new App();
         }
         return instance;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 
 

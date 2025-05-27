@@ -5,14 +5,21 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public class Weapon {
+    private com.project1.Models.Enums.Weapon type;
     private final Texture weaponTxt = GameAssetManager.getInstance().getWeapon();
     private Sprite sprite = new Sprite(weaponTxt);
-    private int ammo = 30;
+    private int ammo;
 
-    public Weapon(){
+    public Weapon(com.project1.Models.Enums.Weapon type) {
+       this.type = type;
         sprite.setX((float) Gdx.graphics.getWidth() / 2 );
         sprite.setY((float) Gdx.graphics.getHeight() / 2);
-        sprite.setSize(50,50);
+        sprite.setSize(40,50);
+        ammo = type.getMaxAmmo();
+    }
+
+    public com.project1.Models.Enums.Weapon getType() {
+        return type;
     }
 
     public Sprite getSprite() {
@@ -23,7 +30,11 @@ public class Weapon {
         return ammo;
     }
 
-    public void setAmmo(int ammo){
+    public void reload() {
+        this.ammo = type.getMaxAmmo();
+    }
+
+    public void changeAmmo(int ammo){
         this.ammo = ammo;
     }
 }

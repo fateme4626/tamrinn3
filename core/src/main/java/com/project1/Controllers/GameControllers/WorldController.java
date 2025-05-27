@@ -3,22 +3,23 @@ package com.project1.Controllers.GameControllers;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.project1.Main;
+import com.project1.Models.App;
 
 public class WorldController {
     private PlayerController playerController;
-    private Texture backgroundTexture;
-    private float backgroundX = 0;
-    private float backgroundY = 0;
+    private Texture bgtxt;
+    private float x = 0;
+    private float y = 0;
 
     public WorldController(PlayerController playerController) {
-        this.backgroundTexture = new Texture("background.png");
+        this.bgtxt = new Texture("background.png");
         this.playerController = playerController;
     }
 
     public void update() {
-        backgroundX = playerController.getPlayer().getPosX();
-        backgroundY = playerController.getPlayer().getPosY();
-        Main.getBatch().draw(backgroundTexture, backgroundX, backgroundY);
+        x = App.getInstance().getPlayer().getPosX();
+        y = App.getInstance().getPlayer().getPosY();
+        Main.getBatch().draw(bgtxt, x, y);
     }
 
 }

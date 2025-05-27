@@ -3,21 +3,22 @@ package com.project1.Models;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.project1.Models.Enums.Hero;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Player {
     private Texture playerTexture = new Texture(GameAssetManager.getInstance().getFirstIdle());
     private Sprite playerSprite = new Sprite(playerTexture);
     private float posX = 0;
     private float posY = 0;
-    private float playerHealth = 100;
     private CollisionRect rect ;
-    private float time = 0;
-    private float speed = 5;
+    private float time = App.getInstance().getGameSetting().getInitialTime();
+    private Weapon weapon;
 
     public float getSpeed() {
-        return speed;
+        return Objects.requireNonNull(Hero.findHero(App.getInstance().getGameSetting().getHeroName())).getSpeed();
     }
 
     private boolean isPlayerIdle = true;
@@ -27,6 +28,11 @@ public class Player {
         playerSprite.setPosition((float) Gdx.graphics.getWidth() / 2, (float) Gdx.graphics.getHeight() / 2);
         playerSprite.setSize(playerTexture.getWidth() * 3, playerTexture.getHeight() * 3);
         rect = new CollisionRect((float) Gdx.graphics.getWidth() / 2, (float) Gdx.graphics.getHeight(), playerTexture.getWidth() * 3, playerTexture.getHeight() * 3);
+        weapon = new Weapon(Objects.requireNonNull(com.project1.Models.Enums.Weapon.findWeapon(App.getInstance().getGameSetting().getWeapon())));
+    }
+
+    public Weapon getWeapon() {
+        return weapon;
     }
 
     public Texture getPlayerTexture() {
@@ -59,14 +65,6 @@ public class Player {
 
     public void setPosY(float posY) {
         this.posY = posY;
-    }
-
-    public float getPlayerHealth() {
-        return playerHealth;
-    }
-
-    public void setPlayerHealth(float playerHealth) {
-        this.playerHealth = playerHealth;
     }
 
     public CollisionRect getRect() {
