@@ -4,7 +4,6 @@ public class App {
     public static App instance;
     private GameSetting gameSetting;
     private PlayerProfile playerProfile;
-    private PlayingInfo playingInfo;
     private boolean isGuest = false;
 
     App() {
@@ -19,13 +18,6 @@ public class App {
         return instance;
     }
 
-    public void setPlayingInfo(PlayingInfo playingInfo) {
-        this.playingInfo = playingInfo;
-    }
-
-    public PlayingInfo getPlayingInfo() {
-        return playingInfo;
-    }
 
     public void setGameSetting(GameSetting gameSetting) {
         this.gameSetting = gameSetting;

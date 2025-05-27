@@ -19,7 +19,7 @@ public class PlayerController {
         player.getPlayerSprite().draw(Main.getBatch());
 
         if(player.isPlayerIdle()){
-            idleAnimation();
+            getAnimation();
         }
 
         handlePlayerInput();
@@ -43,8 +43,8 @@ public class PlayerController {
     }
 
 
-    public void idleAnimation(){
-        Animation<Texture> animation = GameAssetManager.getInstance().getCharacter1_idle_animation();
+    public void getAnimation(){
+        Animation<Texture> animation = GameAssetManager.getInstance().getHeroIdleAnimation();
 
         player.getPlayerSprite().setRegion(animation.getKeyFrame(player.getTime()));
 

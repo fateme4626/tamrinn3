@@ -33,8 +33,19 @@ public class ProfileManager {
         return json.fromJson(PlayerProfile.class, decodedData);
     }
 
-    public boolean deleteProfile(String username) {
+    public void deleteProfile(String username) {
         FileHandle file = Gdx.files.local(PROFILE_DIR + username + ".json");
-        return file.delete();
+         file.delete();
+    }
+
+    public boolean renameSettingsFile(String oldUsername, String newUsername) {
+        FileHandle oldFile = Gdx.files.local(PROFILE_DIR + oldUsername + ".json");
+        FileHandle newFile = Gdx.files.local(PROFILE_DIR + newUsername + ".json");
+
+        if (oldFile.exists()) {
+            oldFile.moveTo(newFile);
+            return true;
+        }
+        return false;
     }
 }

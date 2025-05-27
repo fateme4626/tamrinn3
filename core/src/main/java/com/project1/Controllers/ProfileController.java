@@ -90,8 +90,11 @@ public class ProfileController {
                 } else if (ProfileManager.getInstance().loadProfile(newName) != null) {
                     view.getNewNameField().setText("username already exist!");
                 } else {
+                    ProfileManager.getInstance().renameSettingsFile(App.getInstance().getPlayerProfile().getUsername(),
+                        newName);
+                    GameSettingSaver.getInstance().renameSettingsFile(App.getInstance().getPlayerProfile().getUsername(),
+                        newName);
                     App.getInstance().getPlayerProfile().setUsername(newName);
-                    ProfileManager.getInstance().saveProfile(App.getInstance().getPlayerProfile());
                     view.removeActors();
                 }
                 view.getConfirmButton().setChecked(false);

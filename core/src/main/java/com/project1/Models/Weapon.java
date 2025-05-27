@@ -5,18 +5,18 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public class Weapon {
-    private final Texture smgTexture = new Texture(GameAssetManager.getInstance().getSmg());
-    private Sprite smgSprite = new Sprite(smgTexture);
+    private final Texture weaponTxt = GameAssetManager.getInstance().getWeapon();
+    private Sprite sprite = new Sprite(weaponTxt);
     private int ammo = 30;
 
     public Weapon(){
-        smgSprite.setX((float) Gdx.graphics.getWidth() / 2 );
-        smgSprite.setY((float) Gdx.graphics.getHeight() / 2);
-        smgSprite.setSize(50,50);
+        sprite.setX((float) Gdx.graphics.getWidth() / 2 );
+        sprite.setY((float) Gdx.graphics.getHeight() / 2);
+        sprite.setSize(50,50);
     }
 
-    public Sprite getSmgSprite() {
-        return smgSprite;
+    public Sprite getSprite() {
+        return sprite;
     }
 
     public int getAmmo() {

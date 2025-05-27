@@ -36,4 +36,15 @@ public class GameSettingSaver {
         FileHandle file = Gdx.files.local(settingDir + username + ".json");
         return file.delete();
     }
+
+    public boolean renameSettingsFile(String oldUsername, String newUsername) {
+        FileHandle oldFile = Gdx.files.local(settingDir + oldUsername + ".json");
+        FileHandle newFile = Gdx.files.local(settingDir + newUsername + ".json");
+
+        if (oldFile.exists()) {
+            oldFile.moveTo(newFile);
+            return true;
+        }
+        return false;
+    }
 }

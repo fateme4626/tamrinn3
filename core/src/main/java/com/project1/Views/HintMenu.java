@@ -33,7 +33,7 @@ public class HintMenu implements Screen {
         contentTable.defaults().pad(20).width(stage.getWidth() - 50);
 
         contentTable.add(new Label("Game Basics", skin, "title")).row();
-        contentTable.add(createBasicHints()).growX().row();
+        contentTable.add(showHints()).growX().row();
 
         contentTable.add(new Label("Heroes", skin, "title")).center().padTop(50).row();
         contentTable.add(fillHeroTable()).growX().row();
@@ -61,16 +61,14 @@ public class HintMenu implements Screen {
         stage.addActor(mainTable);
     }
 
-    private Table createBasicHints() {
+    private Table showHints() {
         Table basics = new Table();
         basics.defaults().pad(10).left();
 
         String[] hints = {
-            "1. Movement: Use WASD keys",
-            "2. Shooting: Left mouse click",
-            "3. Reload: Press R",
-            "4. Avoid enemy attacks!",
-            "5. Collect XP to level up"
+            "+ Movement: W-A-S-D",
+            "+ Shooting: Left mouse click",
+            "+ Reload: R key",
         };
 
         for (String hint : hints) {
